@@ -22,7 +22,7 @@
   position: absolute;
   top: 20px;
   right: 28px;
-  background-image: url("/src/images/close.png");
+  background-image: url("/src/assets/close.png");
   background-repeat: no-repeat;
   background-color: #fff;
 }

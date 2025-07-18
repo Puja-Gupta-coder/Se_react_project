@@ -3,6 +3,7 @@ import "./App.css";
 import { APIkey, coordinates } from "../../utils/constants.js";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
+import Footer from "../Footer/Footer.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import { getWeather, processWeatherData } from "../../utils/weatherApi.js";
@@ -29,6 +30,18 @@ function App() {
     setActiveModal("");
   };
 
+  function closeOnOverlayClick(e) {
+    if (e.target.classList.contains("modal_opened")) {
+      closeActiveModal();
+    }
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === "Escape") {
+      closeActiveModal();
+    }
+  }
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -39,10 +52,11 @@ function App() {
   }, []);
 
   return (
-    <div className="page">
+    <div onClick={closeOnOverlayClick} className="page">
       <div className="page__content">
         <Header handleAddClick={handleAddClick} weatherData={weatherData} />
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+        <Footer />
       </div>
       <ModalWithForm
         title="New garment"

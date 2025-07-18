@@ -15,11 +15,17 @@ export const processWeatherData = (data) => {
   results.city = data.name;
   results.temp = { F: data.main.temp };
   results.type = getWeatherType(results.temp.F);
+  results.condition = data.weather[0].main.toLowerCase();
+  results.isDay = isDay(data.sys, Date.now());
 
   return results;
 };
 
-const getWeatherType = (temperature) => {
+const isDay = ({ sunrise, sunset }, now) => {
+  return sunrise * 1000 < now && now < sunset * 1000;
+};
+
+function getWeatherType(temperature) {
   if (temperature > 86) {
     return "hot";
   } else if (temperature >= 66 && temperature < 86) {
@@ -27,4 +33,4 @@ const getWeatherType = (temperature) => {
   } else {
     return "cold";
   }
-};
+}
