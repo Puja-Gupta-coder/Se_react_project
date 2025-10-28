@@ -1,0 +1,17 @@
+.profile {
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+  padding-top: 40px;
+  box-sizing: border-box;
+}
+
+.profile__sidebar {
+  flex: 0 0 20%;
+  max-width: 300px;
+}
+
+.profile__clothing-item {
+  flex: 1 1 auto;
+  min-width: 0;
+}

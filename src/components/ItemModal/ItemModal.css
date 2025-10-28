@@ -22,7 +22,7 @@
   right: 28px;
   background-image: url("/src/assets/close.png");
   background-repeat: no-repeat;
-  background-color: #fff;
+  background-color: transparent;
 }
 
 .modal__title {
@@ -46,6 +46,11 @@
 .modal__form {
   display: flex;
   flex-direction: column;
+}
+
+.modal__image {
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .modal__label {
