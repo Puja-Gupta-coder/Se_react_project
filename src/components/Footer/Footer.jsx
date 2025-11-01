@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer className="footer">
       <p className="footer__text">Developed by Puja Gupta</p>
-      <p className="footer">2025</p>
+      <p className="footer__text">{new Date().getFullYear()}</p>
     </footer>
   );
 }

@@ -1,8 +1,10 @@
+import { useContext } from "react";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import "./WeatherCard.css";
 import { weatherTypes, defaultWeatherTypes } from "../../utils/constants";
 import sunny from "../../assets/sunny.png";
 function WeatherCard({ weatherData }) {
-  const { currentTemperatureUnit } = useContext(currentTemperatureUnitContext);
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const filterType = weatherTypes.filter((type) => {
     return (
       type.day === weatherData.isDay && type.condition === weatherData.condition

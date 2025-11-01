@@ -19,7 +19,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
       title="New garment"
       buttonText="Add garment"
       onClose={onClose}
-      activeModal={isOpen}
+      activeModal={isOpen === "add-garment"}
       onSubmit={handleSubmit}
     >
       <label htmlFor="name" className="modal__label">
@@ -28,7 +28,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
           type="text"
           name="name"
           className="modal__input"
-          id="clothing-name"
+          id="name"
           placeholder="Name"
           required
           value={values.name}

@@ -9,7 +9,7 @@ import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
-import { getWeather, filterWeatherData } from "../../utils/weatherApi";
+import { getWeather, processWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import { getItems, postItem, deleteItem } from "../../utils/api";
 
@@ -45,28 +45,44 @@ function App() {
       name: inputValues.name,
       imageUrl: inputValues.link,
       weather: inputValues.weatherType,
+      id: crypto.randomUUID(), // Add a unique ID for new items
     };
+
+    // Log the data being sent
+    console.log("Sending new item:", newCardData);
 
     postItem(newCardData)
       .then((data) => {
-        setClothingItems([data, ...clothingItems]);
+        console.log("Received response:", data);
+        setClothingItems((prevItems) => [data, ...prevItems]); // Use functional update
         handleReset();
         closeActiveModal();
       })
-      .catch((error) => console.error("Failed to add item:", error));
+      .catch((error) => {
+        console.error("Failed to add item:", error);
+        // Keep the modal open on error
+      });
   };
 
   const handleDeleteItem = (card) => {
-    deleteItem(card._id || card.id)
-      .then(() => {
+    const itemId = card.id || card._id;
+    console.log("Attempting to delete item:", itemId);
+
+    deleteItem(itemId)
+      .then((response) => {
+        console.log("Delete response:", response);
         setClothingItems((prevItems) =>
-          prevItems.filter(
-            (item) => item.id !== card.id || item._id !== card._id
-          )
+          prevItems.filter((item) => {
+            const currentId = item.id || item._id;
+            return currentId !== itemId;
+          })
         );
         closeActiveModal();
       })
-      .catch((error) => console.error("Failed to delete item:", error));
+      .catch((error) => {
+        console.error("Failed to delete item:", error);
+        // Keep modal open on error
+      });
   };
 
   function closeActiveModal() {
@@ -76,8 +92,9 @@ function App() {
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
-        const filterData = filterWeatherData(data);
-        setWeatherData(filterData);
+        const filteredData = processWeatherData(data);
+        setWeatherData(filteredData);
+        setWeatherData(filteredData);
       })
       .catch((error) => console.error("Failed to fetch weather data:", error));
   }, []);
@@ -114,7 +131,7 @@ function App() {
                 <Profile
                   clothingItems={clothingItems}
                   handleCardClick={handleCardClick}
-                  onAddItem={onAddItem}
+                  handleAddClick={handleAddClick}
                 />
               }
             />
@@ -131,7 +148,7 @@ function App() {
         <ItemModal
           activeModal={activeModal}
           card={selectedCard}
-          handleCloseClick={closeActiveModal}
+          onClose={closeActiveModal}
           handleDeleteItem={handleDeleteItem}
         />
       </div>

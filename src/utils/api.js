@@ -1,10 +1,33 @@
+// The API (json-server) runs on port 3001 to avoid conflict with Vite dev server
 const baseUrl = "http://localhost:3001";
 
-function handleResponse(res) {
-  if (res.ok) {
+async function handleResponse(res) {
+  const contentType = res.headers.get("content-type") || "";
+
+  if (!res.ok) {
+    // Try to get error message from response
+    let errorMessage;
+    try {
+      if (contentType.includes("application/json")) {
+        const error = await res.json();
+        errorMessage = error.message || `Error: ${res.status}`;
+      } else {
+        errorMessage = await res.text();
+      }
+    } catch (e) {
+      errorMessage = `Error: ${res.status}`;
+    }
+    throw new Error(errorMessage);
+  }
+
+  // Handle successful response
+  if (contentType.includes("application/json")) {
     return res.json();
   }
-  return Promise.reject(`Error: ${res.status}`);
+
+  throw new Error(
+    `Expected JSON but received "${contentType}". Check that your API server (json-server) is running at ${baseUrl}`
+  );
 }
 
 function getItems() {
@@ -27,4 +50,4 @@ function deleteItem(id) {
   }).then(handleResponse);
 }
 
-export { getItems, postItem, deleteItem };
+export { getItems, postItem, deleteItem, handleResponse };
