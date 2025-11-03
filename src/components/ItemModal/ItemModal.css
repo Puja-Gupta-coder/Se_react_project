@@ -1,205 +1,79 @@
-.modal {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  visibility: hidden;
-}
-
-.modal_opened {
-  visibility: visible;
-}
-
-.modal__close {
-  width: 20px;
-  height: 20px;
-  border: none;
-  position: absolute;
-  top: 20px;
-  right: 28px;
-  background-image: url("/src/assets/close.png");
-  background-repeat: no-repeat;
-  background-color: transparent;
-}
-
-.modal__title {
-  font-family: "Cabinet Grotesk";
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
+.modal__caption {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: bold;
+  color: #000;
   margin: 0;
 }
 
-.modal__content {
-  width: 496px;
-  max-height: 90vh;
-  position: relative;
-  padding: 28px;
-  background-color: #fff;
-  border-radius: 20px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+.modal__weather {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: bold;
+  color: #000;
+  margin: 0;
+  padding: 12px 0;
 }
 
-.modal__weather {
-  margin: 12px 0 0;
-  font-size: 16px;
-  line-height: 20px;
-  color: #000;
-  font-weight: 500;
+.modal__close {
+  position: absolute;
+  opacity: 0.5;
+  border: none;
+  background: none;
+  cursor: pointer;
+  top: 20px;
+  right: 20px;
 }
 
-.modal__weather {
-  margin: 12px 0 0;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 700;
-  color: #000;
+.modal__close:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .modal__content_type_image {
-  padding: 20px;
-}
-
-.modal__form {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  padding: 0;
 }
 
 .modal__image {
   width: 100%;
-  max-height: 60vh;
+  flex: 1 1 auto;
   object-fit: contain;
-  margin-bottom: 16px;
-  border-radius: 8px;
-}
-
-.modal__label {
-  margin-top: 24px;
-  font-family: "Cabinet Grotesk";
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
-}
-
-.modal__input {
+  border-radius: 8px 8px 0 0;
   display: block;
-  width: 100%;
-  padding: 0;
-  margin-top: 8px;
-  border: none;
-  border-bottom: 1px solid #000;
-  font-family: "Cabinet Grotesk";
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
-}
-
-.modal__radio-buttons {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin: 0;
-  border: none;
-  font-family: "Cabinet Grotesk";
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
-}
-
-.modal__legend {
-  padding: 24px 0 12px;
-}
-
-.modal__label_type_radio {
-  margin: 0;
-  padding-top: 8px;
-  color: #00000080;
-}
-
-.modal__radio-input {
-  margin-right: 8px;
-}
-
-.modal__submit {
-  width: 124px;
-  height: 36px;
-  position: absolute;
-  bottom: 36px;
-  background-color: #000000;
-  border-radius: 4px;
-  border: none;
-  color: #fff;
-}
-
-.modal__submit:hover {
-  background-color: #00000099;
-}
-
-.modal__submit:disabled {
-  background-color: #0000004d;
 }
 
 .modal__footer {
-  margin-top: auto;
+  padding: 20px 32px;
+  background: #fff;
+  border-radius: 0 0 8px 8px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .modal__footer-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
-}
-
-.modal__caption {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 24px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 60%;
-}
-
-.modal__weather {
-  margin: 0;
-  font-size: 16px;
-  line-height: 20px;
-  color: #666;
+  gap: 12px;
 }
 
 .modal__delete-btn {
-  padding: 0;
+  font-size: 20px;
+  margin-top: 0;
   background: none;
   border: none;
-  color: #ff4d4d;
-  cursor: pointer;
+  color: #ff4d00;
   font-family: "Cabinet Grotesk", sans-serif;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
-}
-
-.modal__delete-btn:hover {
-  opacity: 0.6;
-}
-
-.modal__delete-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  color: #bdbdbd;
-}
-
-.modal__note {
-  margin-top: 8px;
-  font-size: 14px;
-  color: #888;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
