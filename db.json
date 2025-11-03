@@ -120,16 +120,16 @@
       "id": "e003"
     },
     {
-      "name": "Bessie Coleman",
-      "imageUrl": "https://unsplash.com/photos/white-and-blue-cloudy-sky-f5_lfi2S-d4",
-      "weather": "",
-      "id": "a35184eb-faa0-4c7f-8998-c1f9ecfc2f8d"
-    },
-    {
       "name": "Puja Gupta",
       "imageUrl": "https://unsplash.com/photos/white-and-blue-cloudy-sky-f5_lfi2S-d4",
       "weather": "cold",
       "id": "ef621980-2482-44d6-a02c-233ad7c47878"
+    },
+    {
+      "name": "Puja Gupta",
+      "imageUrl": "https://unsplash.com/photos/white-and-blue-cloudy-sky-f5_lfi2S-d4",
+      "weather": "",
+      "id": "a5ed87d7-ebf5-4f29-aada-fceb6d364f99"
     }
   ]
 }
